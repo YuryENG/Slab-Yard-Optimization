@@ -1,0 +1,64 @@
+﻿<Window x:Class="Evolving_Shakespeare.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Evolving_Shakespeare"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="575">
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="populationListSource"/>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="249*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="327*"/>
+            <ColumnDefinition Width="191*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Best Phrase:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30"/>
+        <TextBlock x:Name="TextBlockBestPhrase" HorizontalAlignment="Left" Margin="85,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
+        
+        <Button x:Name="BtnStart" Content="START" HorizontalAlignment="Left" Margin="70,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="BtnStart_Click"/>
+        <!--<ListBox x:Name="ListBoxAllPhrases" HorizontalAlignment="Left" Height="Auto" Margin="227,0,0,-0.2" Grid.Row="2" VerticalAlignment="Top" Width="291" Grid.ColumnSpan="2"/>-->
+        <Label Content="ALL PHRASES:" Grid.Column="1" HorizontalAlignment="Left" Margin="9.8,0,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.896,-0.455" Height="32" Width="281"/>
+
+        <StackPanel Grid.Row="2">
+        <StackPanel  Orientation="Horizontal">
+            <Label Content="Total Generations:" Margin="10,10,10,10" />
+                <TextBox x:Name="IterationCount" HorizontalAlignment="Left" Margin="10,10,10,10" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+
+            <StackPanel  Orientation="Horizontal">
+                <Label Content="Total Population:" Margin="10,10,10,10" />
+                <TextBox x:Name="textBoxTotalPopulation" HorizontalAlignment="Left" Margin="20,10,10,10" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+
+            <StackPanel  Orientation="Horizontal">
+                <Label Content="Mutation Rate:" Margin="10,10,10,10" />
+                <TextBox x:Name="textBoxMutationRate" HorizontalAlignment="Left" Margin="30,10,10,10" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        
+        
+        
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" 
+                         Height="Auto" Margin="0" Grid.Row="2" Grid.Column="1"
+                          ItemsSource="{Binding Source={StaticResource populationListSource}}">
+
+
+        </DataGrid>
+
+
+
+
+    </Grid>
+</Window>
