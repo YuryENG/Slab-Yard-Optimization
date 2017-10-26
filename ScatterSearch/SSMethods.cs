@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -100,7 +100,7 @@ namespace ScatterSearch
         }
 
 
-        public void ImprovementMethod(List<reference> pRefSet, string pSecretPhrase )
+        public void ImprovementMethod2(List<reference> pRefSet, string pSecretPhrase )
         {
             foreach (var item in pRefSet)
             {
@@ -112,6 +112,38 @@ namespace ScatterSearch
                         item.phrase[i] = System.Char.ToLower(item.phrase[i]);
                 }
             }
+        }
+
+        public void ImprovementMethod(List<reference> pRefSet, string pSecretPhrase)
+        {
+            string space = " ";
+            foreach (var item in pRefSet)
+            {
+                for (int i = 0; i < pSecretPhrase.Length; i++)
+                {
+                    if (System.Char.IsUpper(pSecretPhrase[i]) == true)
+                        item.phrase[i] = System.Char.ToUpper(item.phrase[i]);
+                    if (System.Char.IsLower(pSecretPhrase[i]) == true)
+                        item.phrase[i] = System.Char.ToLower(item.phrase[i]);
+                }
+
+                string tempString = new string(item.phrase);
+                tempString = tempString.Replace(" ", string.Empty);
+
+                for (int i = 0; i < pSecretPhrase.Length; i++)
+                {                    
+                    if(pSecretPhrase[i] == space[0])
+                    {
+                        tempString = tempString.Insert(i, space);
+                    }
+                }
+
+                for (int i = 0; i < pSecretPhrase.Length; i++)
+                {
+                    item.phrase[i] = tempString[i];
+                }
+            }
+            
         }
 
         public double PointDistance(List<reference> pRefSet)
@@ -152,10 +184,16 @@ namespace ScatterSearch
 
             reference tempChild = new reference(pSecret_Phrase);
 
-            for (int i = 0; i < crossover_point; i++)
+            for (int i = 0; i < crossover_point; i++)                
                 tempChild.phrase[i] = pParentA.phrase[i];
+
             for (int i = crossover_point; i < pParentA.phrase.Length; i++)
-                tempChild.phrase[i] = pParentB.phrase[i];
+            {
+                if (pParentA.phrase[i] != pSecret_Phrase[i])                
+                    tempChild.phrase[i] = pParentB.phrase[i];                
+                else
+                    tempChild.phrase[i] = pParentA.phrase[i];
+             }
 
             var fitness = Fitness(tempChild.phrase, pSecret_Phrase);
             tempChild.fitness = fitness;
