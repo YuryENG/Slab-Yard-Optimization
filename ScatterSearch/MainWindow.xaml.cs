@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace ScatterSearch
     public partial class MainWindow : Window
     {
         // only letters cap & non cap , and spaces are ok; no numbers or special symbols ie # 
-        public string secret_phrase = "To be or not";
+        public string secret_phrase = "To be or not to be";
         public int referenceSetSize = 20;
         public int initialSolutionSize = 200;
         public int maxIteration = 100;
@@ -147,11 +147,11 @@ namespace ScatterSearch
             //2. add initial solutions to reference set for deversification
             //3. make sure that when crossing all letters are present in the phrase and not being excluded
             // right now when crossing i loose some of letters
-            //4. improvement function is not good , it just 
+            //4. improvement function is ok but can be so much better good , it just 
 
 
-            double finalFitness = myssMethods.PointDistance(RefSet);
-            //var refset_strings = myssMethods.getPhrase(RefSet);
+            double finalFitness = RefSet[0].fitness; //myssMethods.PointDistance(RefSet);
+            var refset_strings = myssMethods.getPhrase(RefSet);
             //RefSet[0].fitness = 1;
 
             double improvment = finalFitness - initialFitness;
