@@ -9,3 +9,10 @@ Things to improve:
 
 	Not this algorithm does not provide solution to the problem, but comes very close to it. 
 	In order to get the solution, the improvements above have to be made
+
+Notes: 2017-10-25
+1. updated crossover function: now it is not replacing chromosome of the parentA if it matches secret phrase 
+2. updated improvement function: it now re-shuffles spaces to match the phrase spaces. 
+Result: now it finds the secret phrase 99% of the time. Before it was getting close. 
+
+Observation: Improvement function, and selective crossover is extreamly important component of Scatter search. 
